@@ -23,4 +23,30 @@ export class ErrorCodes {
     404,
     '게시글을 찾을 수 없습니다.',
   );
+
+  // 인증 관련 에러
+  static readonly USER_ALREADY_EXISTS = new ErrorCodes(
+    400,
+    '이미 존재하는 사용자입니다.',
+  );
+
+  static readonly EMAIL_OR_PASSWORD_MISMATCH = new ErrorCodes(
+    401,
+    '이메일 또는 패스워드가 일치하지 않습니다.',
+  );
+  static readonly TOKEN_EXPIRED = new ErrorCodes(401, '토큰이 만료되었습니다.');
+  static readonly INVALID_TOKEN_SIGNATURE = new ErrorCodes(
+    401,
+    '유효하지 않은 토큰 서명입니다.',
+  );
+
+  static readonly USER_NOT_FOUND = new ErrorCodes(
+    404,
+    '사용자를 찾을 수 없습니다.',
+  );
+
+  static readonly REFRESH_TOKEN_NOT_FOUND = new ErrorCodes(
+    404,
+    '리프레시 토큰을 찾을 수 없습니다.',
+  );
 }
