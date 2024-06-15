@@ -8,7 +8,7 @@ export class ServiceException extends Error {
     this.errorCode = errorCode;
   }
 
-  get status() {
+  getStatus() {
     return this.errorCode.status;
   }
 
