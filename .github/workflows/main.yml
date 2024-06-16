@@ -33,7 +33,7 @@ jobs:
           SERVER_PORT: 3000
           # 데이터베이스 설정
           DB_TYPE: mysql
-          DB_HOST: host.docker.internal
+          DB_HOST: ${{ secrets.EC2_HOST }}
           DB_PORT: 3306
           DB_USERNAME: root
           DB_PASSWORD: root
@@ -74,7 +74,6 @@ jobs:
             docker stop nest-board-api-server || true
             docker rm nest-board-api-server || true
             docker run -d --name nest-board-api-server \
-              --add-host host.docker.internal:host-gateway \
               -p 80:3000 \
               -e SERVER_PORT="${{ env.SERVER_PORT }}" \
               -e DB_TYPE="${{ env.DB_TYPE }}" \
