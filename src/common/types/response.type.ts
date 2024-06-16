@@ -7,5 +7,5 @@ export type TResponse<T> =
   | {
       success: false;
       result: null;
-      message: string;
+      message: string | object;
     };
