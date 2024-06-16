@@ -33,7 +33,7 @@ jobs:
           SERVER_PORT: 3000
           # 데이터베이스 설정
           DB_TYPE: mysql
-          DB_HOST: localhost
+          DB_HOST: host.docker.internal
           DB_PORT: 3306
           DB_USERNAME: root
           DB_PASSWORD: root
