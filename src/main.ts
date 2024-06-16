@@ -18,10 +18,25 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('게시판 API 서버')
-    .setDescription('게시판 API 서버')
+    .setTitle('게시판 서버 API 문서')
+    .setDescription('게시판 서버 API 문서입니다.')
     .setVersion('1.0')
-    .addCookieAuth('Authorization')
+    .addApiKey(
+      {
+        type: 'apiKey',
+        in: 'cookie',
+        name: 'accessToken',
+      },
+      'accessToken',
+    )
+    .addApiKey(
+      {
+        type: 'apiKey',
+        in: 'cookie',
+        name: 'refreshToken',
+      },
+      'refreshToken',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
