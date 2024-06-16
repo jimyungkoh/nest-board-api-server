@@ -62,9 +62,12 @@ jobs:
           echo "$KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST '
+            cd /path/to/your/project
+            docker build -t kojimyung1206/nest-board-api-server .
+            docker push kojimyung1206/nest-board-api-server
             docker stop nest-board-api-server || true
             docker rm nest-board-api-server || true
-            docker build -t nest-board-api-server .
+            docker pull kojimyung1206/nest-board-api-server
             docker run -d --name nest-board-api-server \
               -p 80:3000 \
               -e SERVER_PORT="${{ env.SERVER_PORT }}" \
@@ -86,5 +89,5 @@ jobs:
               -e AWS_S3_SECRET_ACCESS_KEY="${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}" \
               -e AWS_S3_BUCKET_NAME="${{ env.AWS_S3_BUCKET_NAME }}" \
               -e NANOID_LENGTH="${{ env.NANOID_LENGTH }}" \
-              nest-board-api-server
+              kojimyung1206/nest-board-api-server
           '
