@@ -1,3 +1,4 @@
+import { TAccount } from 'src/common/types';
 import {
   Column,
   CreateDateColumn,
@@ -8,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { RefreshToken } from '../../auth/entities/refresh-token.entity';
-import { Comment } from '../../posts/entities/comment.entity';
+import { Comment } from '../../posts/comment/entities/comment.entity';
 import { Post } from '../../posts/entities/post.entity';
 
 @Entity()
@@ -25,8 +26,8 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
-  role: string;
+  @Column({ default: 'user' })
+  role: TAccount;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -37,12 +38,14 @@ export class User {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToMany(() => Post, (post) => post.user)
-  posts: Post[];
+  @OneToMany(() => Post, (post) => post.author, { nullable: true })
+  posts?: Post[];
 
-  @OneToMany(() => Comment, (comment) => comment.user)
-  comments: Comment[];
+  @OneToMany(() => Comment, (comment) => comment.author, { nullable: true })
+  comments?: Comment[];
 
-  @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
-  refreshTokens: RefreshToken[];
+  @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user, {
+    nullable: true,
+  })
+  refreshTokens?: RefreshToken[];
 }
