@@ -84,9 +84,9 @@
 │  │  │     └─ categories.service.spec.ts
 │  │  ├─ posts
 │  │  │  ├─ comment
-│  │  │  │  ├─ dto
+│  │  │  │  ├─ dto
 │  │  │  │  │  └─ index.ts
-│  │  │  │  ├─ specs
+│  │  │  │  ├─ specs
 │  │  │  │  │  └─ comments.service.spec.ts
 │  │  │  │  ├─ comments.module.ts
 │  │  │  │  ├─ comments.repository.ts
