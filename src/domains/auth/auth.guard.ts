@@ -1,4 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +13,6 @@ import {
   PermissionDeniedException,
   UserNotFoundException,
 } from './exceptions';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -35,6 +35,7 @@ export class AuthGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
     let accessToken = request.cookies.accessToken;
+
     let decoded: any;
 
     if (!accessToken) throw new LoginRequiredException();

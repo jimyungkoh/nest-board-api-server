@@ -7,11 +7,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { ApiExcludeController } from '@nestjs/swagger';
 import { Private } from 'src/common/decorators/private.decorator';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto';
 
 @Private('admin')
+@ApiExcludeController()
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
