@@ -3,16 +3,18 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
 export class RefreshToken {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn()
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.refreshTokens)
+  user: User;
 
   @Column()
   token: string;
@@ -25,8 +27,4 @@ export class RefreshToken {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @ManyToOne(() => User, (user) => user.refreshTokens)
-  @JoinColumn({ name: 'userId' })
-  user: User;
 }
