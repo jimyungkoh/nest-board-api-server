@@ -24,6 +24,16 @@ export class ErrorCodes {
     '게시글을 찾을 수 없습니다.',
   );
 
+  static readonly ONLY_AUTHOR_CAN_ACCESS = new ErrorCodes(
+    403,
+    '작성자만 접근할 수 있습니다.',
+  );
+
+  static readonly ONLY_ADMIN_CAN_ACCESS = new ErrorCodes(
+    403,
+    '관리자만 접근할 수 있습니다.',
+  );
+
   // 인증 관련 에러
   static readonly USER_ALREADY_EXISTS = new ErrorCodes(
     400,
@@ -48,5 +58,15 @@ export class ErrorCodes {
   static readonly REFRESH_TOKEN_NOT_FOUND = new ErrorCodes(
     404,
     '리프레시 토큰을 찾을 수 없습니다.',
+  );
+
+  static readonly LOGIN_REQUIRED = new ErrorCodes(
+    401,
+    '로그인이 후 이용해주세요.',
+  );
+
+  static readonly PERMISSION_DENIED = new ErrorCodes(
+    403,
+    '접근 권한이 없습니다.',
   );
 }
