@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto';
-import { Category } from './entities';
+import { Category } from './entities/category.entity';
 import {
   CategoryAlreadyExistsException,
   CategoryNotFoundException,
@@ -61,6 +61,6 @@ export class CategoriesService {
 
     if (!category) throw new CategoryNotFoundException();
 
-    return await this.categoriesRepository.delete(category.id);
+    return await this.categoriesRepository.softDelete(category.id);
   }
 }

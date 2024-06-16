@@ -7,9 +7,11 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { Private } from 'src/common/decorators/private.decorator';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto';
 
+@Private('admin')
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
