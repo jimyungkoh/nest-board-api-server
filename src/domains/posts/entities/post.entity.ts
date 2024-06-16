@@ -1,3 +1,4 @@
+import { Category } from 'src/domains/categories/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,8 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { Category } from './category.entity';
-import { Comment } from './comment.entity';
+import { Comment } from '../comment/entities/comment.entity';
 import { Image } from './image.entity';
 
 @Entity()
@@ -25,7 +25,7 @@ export class Post {
   @Column('text')
   content: string;
 
-  @Column()
+  @Column({ default: 0 })
   viewCount: number;
 
   @CreateDateColumn()
@@ -38,16 +38,16 @@ export class Post {
   deletedAt: Date;
 
   @ManyToOne(() => User, (user) => user.posts)
-  @JoinColumn({ name: 'userId' })
-  user: User;
+  @JoinColumn({ name: 'authorId' })
+  author: User;
 
-  @ManyToOne(() => Category, (category) => category.posts)
+  @ManyToOne(() => Category, (category) => category.posts, { nullable: true })
   @JoinColumn({ name: 'categoryId' })
-  category: Category;
+  category?: Category;
 
-  @OneToMany(() => Image, (image) => image.post)
-  images: Image[];
+  @OneToMany(() => Image, (image) => image.post, { nullable: true })
+  images?: Image[];
 
-  @OneToMany(() => Comment, (comment) => comment.post)
-  comments: Comment[];
+  @OneToMany(() => Comment, (comment) => comment.post, { nullable: true })
+  comments?: Comment[];
 }
