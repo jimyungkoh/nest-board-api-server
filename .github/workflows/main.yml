@@ -62,7 +62,11 @@ jobs:
           echo "$KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST '
-            cd /path/to/your/project
+            mkdir -p ~/nest-board-api-server
+            cd ~/nest-board-api-server
+            git pull origin main
+            npm install
+            npm run build
             docker build -t kojimyung1206/nest-board-api-server .
             docker push kojimyung1206/nest-board-api-server
             docker stop nest-board-api-server || true
